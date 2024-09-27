@@ -1,3 +1,5 @@
+package hw03;
+
 import static org.junit.Assert.*;
 
 import java.util.Random;
@@ -8,13 +10,13 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test5 {
+public class No5Tests {
 
-    private MyDoublyLinkedList<String> myList;
+    private CS232DoublyLinkedList<String> myList;
 
     @Before
     public void setUp() throws Exception {
-        myList = new MyDoublyLinkedList<String>();
+        myList = new CS232DoublyLinkedList<String>();
     }
     
     @Test
@@ -216,7 +218,7 @@ public class Test5 {
         myList.add("Test4");
         myList.add("Test5");
         
-    	MyDoublyLinkedList<String> addList = new MyDoublyLinkedList<String>();
+    	CS232DoublyLinkedList<String> addList = new CS232DoublyLinkedList<String>();
     	addList.add("new1");
     	addList.add("new2");
     	addList.add("new3");
@@ -239,7 +241,7 @@ public class Test5 {
         myList.add("Test4");
         myList.add("Test5");
         
-    	MyDoublyLinkedList<String> addList = new MyDoublyLinkedList<String>();
+    	CS232DoublyLinkedList<String> addList = new CS232DoublyLinkedList<String>();
     	addList.add("new1");
     	addList.add("new2");
     	addList.add("new3");
@@ -263,7 +265,7 @@ public class Test5 {
         myList.add("Test4");
         myList.add("Test5");
         
-    	MyDoublyLinkedList<String> addList = new MyDoublyLinkedList<String>();
+    	CS232DoublyLinkedList<String> addList = new CS232DoublyLinkedList<String>();
     	addList.add("new1");
     	addList.add("new2");
     	addList.add("new3");
@@ -283,7 +285,7 @@ public class Test5 {
         myList.add("Test1");
         myList.add("Test2");
         
-    	MyDoublyLinkedList<String> addList = new MyDoublyLinkedList<String>();
+    	CS232DoublyLinkedList<String> addList = new CS232DoublyLinkedList<String>();
     	addList.add("new1");
     	addList.add("new2");
     	
@@ -319,7 +321,7 @@ public class Test5 {
         myList.add("Test1");
         myList.add("Test2");
         
-    	MyDoublyLinkedList<String> addList = new MyDoublyLinkedList<String>();
+    	CS232DoublyLinkedList<String> addList = new CS232DoublyLinkedList<String>();
     	
         try {
             myList.addAllAt(1, addList);

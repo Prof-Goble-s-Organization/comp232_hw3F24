@@ -1,11 +1,13 @@
+package hw03;
+
 /**
  * An implementation of the CS132List interface backed with an array of Objects.
  * 
- * @author William Goble
+ * @author Grant Braught
  * @author Dickinson College
- * @version Feb 8, 2024
+ * @version Feb 18, 2016
  */
-public class MyArrayList<E> implements MyList<E> {
+public class CS232ArrayList<E> implements CS232List<E> {
 
     private static final int INITIAL_CAPACITY = 10;
 
@@ -15,7 +17,7 @@ public class MyArrayList<E> implements MyList<E> {
     /**
      * Construct a new ArrayBackedList.
      */
-    public MyArrayList() {
+    public CS232ArrayList() {
         listElements = (E[]) new Object[INITIAL_CAPACITY];
         currentSize = 0;
     }

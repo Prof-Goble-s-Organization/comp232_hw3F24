@@ -1,20 +1,25 @@
+package hw03;
+
+import java.util.NoSuchElementException;
+
 /**
- * Doubly linked list implementation of the MyList interface.
+ * Doubly linked list implementation of the CS232List interface.
  * 
- * @author William Goble
+ * @author Grant Braught
  * @author Dickinson College
- * @version Feb 8, 2016
+ * @version Feb 18, 2016
  */
-public class MyDoublyLinkedList<E> implements MyList<E> {
+public class CS232IterableDoublyLinkedList<E> implements CS232List<E>,
+		CS232Iterable<E> {
 
 	private DLLNode head;
 	private DLLNode tail;
 	private int size;
 
 	/**
-	 * Construct a new empty MyDoublyLinkedList.
+	 * Construct a new empty CS232DoublyLinkedList.
 	 */
-	public MyDoublyLinkedList() {
+	public CS232IterableDoublyLinkedList() {
 		/*
 		 * This implementation uses dummy head and tail nodes to simplify the
 		 * implementation of insert/remove/add operations at the start or end of
@@ -74,7 +79,11 @@ public class MyDoublyLinkedList<E> implements MyList<E> {
 	 */
 	public E get(int index) throws IndexOutOfBoundsException {
 		DLLNode node = getNode(index);
-		return node.element;
+		if (node != null) {
+			return node.element;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -90,10 +99,9 @@ public class MyDoublyLinkedList<E> implements MyList<E> {
 	 */
 	public void insert(int index, E element) throws IndexOutOfBoundsException {
 		/*
-		 * If the index is passed the end of the list, then tail will succeed
-		 * (appear immediately after) the new node. Otherwise, the node at index
-		 * succeeds the new node.  Need this because, getNode throws an exception
-		 * when index is out of range.
+		 * If the list is empty then tail will succeed (appear immediately
+		 * after) the new node. Otherwise, the node at index succeeds the new
+		 * node.
 		 */
 		DLLNode succ = tail;
 		if (index != size) {
@@ -112,52 +120,17 @@ public class MyDoublyLinkedList<E> implements MyList<E> {
 	 * {@inheritDoc}
 	 */
 	public E remove(int index) throws IndexOutOfBoundsException {
-		// Intentionally not implemented.
+		// Intentionally not implemented... see HW assignment!
 		return null;
 	}
 
-	/**
-	 * Clear all elements of the list up to and including index. The element, if
-	 * any, at index+1 becomes the first element in the list.
-	 * 
-	 * @param index
-	 *            the index up to which to clear the list.
-	 * @throws IndexOutOfBoundsException
-	 *             if index < 0 or index >= size()
-	 */
-	public void clearTo(int index) throws IndexOutOfBoundsException {
-		// Intentionally not implemented.
-	}
-
-	/**
-	 * Add all of the elements of the provided list into this list. The first
-	 * element of the provided list appears at the specified index in this list.
-	 * The element at index, if any, in this list appears immediately following
-	 * the last element of list. Note that it is possible to addAllAt the end of
-	 * the list by providing the list's size as the index.
-	 * 
-	 * @param index
-	 *            the index at which to add the elements.
-	 * @param list
-	 *            the list containing the elements to be added.
-	 * @throws IndexOutOfBoundsException
-	 *             if index < 0 or index > size()
-	 * @throws IllegalArgumentException
-	 *             if list is empty.
-	 */
-	public void addAllAt(int index, MyDoublyLinkedList<E> list)
-			throws IndexOutOfBoundsException {
-		// Intentionally not implemented.
-	}
-
 	/*
-	 * Defines the node object for the doubly linked list. 
-     * 
-     * Note: Fields are public so that they can be accessed directly rather than
-     * via accessors and mutators. This make the implementations of the doubly 
-     * linked list methods above easier to implement and read. And because the 
-     * DLLNode class is private to this class it is not an egregious violation 
-	 * of encapsulation.
+	 * Defines the node object for the doubly linked list. Note: Fields are
+	 * public so that they can be accessed directly rather than via accessors
+	 * and mutators. This make the implementations of the doubly linked list
+	 * methods above easier to implement and read. And because the DLLNode class
+	 * is private to this class it is not an egregious violation of
+	 * encapsulation.
 	 */
 	private class DLLNode {
 		public E element;
@@ -171,6 +144,61 @@ public class MyDoublyLinkedList<E> implements MyList<E> {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public CS232Iterator<E> getIterator() {
+		return new DLLIterator();
+	}
+
+	/*
+	 * Iterator implementation for the doubly linked list.
+	 */
+	private class DLLIterator implements CS232Iterator<E> {
+
+		private DLLNode cursor;
+
+		public DLLIterator() {
+			cursor = head;
+		}
+
+		public boolean hasNext() {
+			return cursor.next != tail;
+		}
+
+		public E next() {
+			if (!hasNext()) {
+				throw new NoSuchElementException("There is no next element.");
+			} else {
+				cursor = cursor.next;
+				return cursor.element;
+			}
+		}
+
+		public boolean hasPrevious() {
+			// Intentionally not implemented, see HW assignment!
+			throw new UnsupportedOperationException("Not implemented");
+		}
+
+		public E previous() {
+			// Intentionally not implemented, see HW assignment!
+			throw new UnsupportedOperationException("Not implemented");
+		}
+
+		public void insert(E element) {
+			DLLNode node = new DLLNode(element, cursor, cursor.next);
+			cursor.next.prev = node;
+			cursor.next = node;
+			cursor = node;
+			size++;
+		}
+
+		public E remove() {
+			// Intentionally not implemented, see HW assignment!
+			throw new UnsupportedOperationException("Not implemented");
+		}
+	}
+	
 	/**
 	 * Helper method for testing that checks that all of the links are
 	 * symmetric.

@@ -1,3 +1,5 @@
+package hw03;
+
 import static org.junit.Assert.*;
 
 import java.util.NoSuchElementException;
@@ -8,14 +10,14 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test7 {
+public class No7Tests {
 
-	private MyIterator<String> it;
-	private MyArrayList<String> myList;
+	private CS232Iterator<String> it;
+	private CS232ArrayList<String> myList;
 	
 	@Before
     public void setUp() throws Exception {
-        myList = new MyArrayList<String>();
+        myList = new CS232ArrayList<String>();
         it = myList.getIterator();
     }
     

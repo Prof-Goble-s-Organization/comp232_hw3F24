@@ -1,3 +1,5 @@
+package hw03;
+
 import static org.junit.Assert.*;
 
 import java.util.NoSuchElementException;
@@ -8,14 +10,14 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class Test6 {
-	private MyIterator<String> it;
-	private MyIterableDoublyLinkedList<String> myList;
+public class No6Tests {
+	private CS232Iterator<String> it;
+	private CS232IterableDoublyLinkedList<String> myList;
 
 	@Before
 	public void setUp() throws Exception {
-		myList = new MyIterableDoublyLinkedList<String>();
-		it = ((MyIterable<String>) myList).getIterator();
+		myList = new CS232IterableDoublyLinkedList<String>();
+		it = ((CS232Iterable<String>) myList).getIterator();
 		buildList();
 	}
 
